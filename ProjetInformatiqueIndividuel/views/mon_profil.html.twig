@@ -1,0 +1,32 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="titre-page">
+            <h2 class="text-center"> Mon Profil </h2>
+        </div>
+        <div class="profil">
+            <div class="row">
+                <div class="photo-profil text-center">
+                    <img src="images/photo-profil/{{ app.user.photo }}" alt="Photo de profil">
+                </div>
+            </div>
+            <div class="row">
+                <div class="contenu-profil">
+                    <h3 class="text-center">{{ app.user.prenom }} {{ app.user.nom }}</h3>
+                    <h4 class="text-center">Login : {{ app.user.username }}</h4>
+                    <h4 class="text-center">Promo {{ app.user.promo }} </h4>
+                    <h4 class="text-center">{{ app.user.email }}</h4>
+                    <p>{{ app.user.description }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <a class="btn " href="{{ path('modificationprofil', { 'id': app.user.id }) }}"> Modifier </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,490 @@
+{% extends "layout.html.twig" %}
+{% set adminMenu = true %}
+
+{% block title %}Administration{% endblock %}
+
+{% block content %}
+    <h2 class="text-center">{{ block('title') }}</h2>
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <div class="container" id="contenu-admin">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <ul class="nav nav-tabs nav-justified">
+                <li class="active"><a href="#stages" data-toggle="tab">Stages</a></li>
+                <li><a href="#semestres" data-toggle="tab">Semestres</a></li>
+                <li><a href="#entreprises" data-toggle="tab">Entreprises</a></li>
+                <li><a href="#universites" data-toggle="tab">Universités</a></li>
+                <li><a href="#comments" data-toggle="tab">Commentaires</a></li>
+                <li><a href="#users" data-toggle="tab">Utilisateur</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane fade in active adminTable" id="stages">
+            {% if stages %}
+                {% for stage in stages %}
+
+                    <h3><a href="{{ path('stage', { 'id': stage.id }) }}">{{ stage.titre }}</a></h3>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img class="image-logo" src="images/photo-entreprise/{{ stage.entreprise.logo }}" alt="Logo-Entreprise" width="100%">
+                        </div>
+                        <div class="col-md-9">
+                            <h5><strong>Entreprise</strong> : {{ stage.entreprise.nom }} - {{ stage.entreprise.ville }}
+                                , {{ stage.entreprise.pays }}</h5>
+                            <h5><strong>Année d'école</strong> : {{ stage.annee }}</h5>
+                            <h5><strong>Duree du stage</strong> : {{ stage.duree }} </h5>
+                            <h5>{{ stage.datedebut }} - {{ stage.datefin }}</h5>
+                            <h5><strong>Etudiant(e)</strong> : {{ stage.auteur.prenom }} {{ stage.auteur.nom }}</h5>
+                            <h5><strong>Sujet</strong> : {{ stage.sujet }} </h5>
+                            <div class="boutons pull-right">
+                                <button class=" btn btn-primary"
+                                        onclick="window.location.href='{{ path('admin_modification_stage', { 'id': stage.id }) }}';">
+                                    Modifier
+                                </button>
+                                <button type="button" class="btn btn-danger" title="Supprimer" data-toggle="modal"
+                                        data-target="#stageDialog{{ stage.id }}"><span
+                                            class="glyphicon glyphicon-remove"></span>
+                                    Supprimer
+                                </button>
+
+
+                                <div class="modal fade" id="stageDialog{{ stage.id }}" tabindex="-1" role="dialog"
+                                     aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">Confirmation demandée </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Êtes-vous sûr(e) de vouloir supprimer ce stage ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                    Annuler
+                                                </button>
+                                                <a href="{{ path('admin_suppression_stage', { 'id': stage.id }) }}"
+                                                   class="btn btn-danger">Confirmer</a>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="tab-pane fade adminTable" id="semestres">
+            {% if semestres %}
+            {% for semestre in semestres %}
+                <h3><a href="{{ path('semestre', { 'id': semestre.id }) }}">{{ semestre.titre }}</a></h3>
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="image-logo" src="images/photo-universite/{{ semestre.universite.logo }}" alt="Logo Université" width="100%">
+                </div>
+                <div class="col-md-9">
+                    <h5><strong>Université</strong> : {{ semestre.universite.nom }}</h5>
+                    <h5><strong>Adresse</strong> : {{ semestre.universite.ville }}, {{ semestre.universite.pays }} </h5>
+                    <h5><strong>Année d'école</strong> : {{ semestre.annee }}</h5>
+                    <h5><strong>Etudiant(e)</strong> : {{ semestre.auteur.prenom }} {{ semestre.auteur.nom }}</h5>
+                    {% if semestre.duree==1 %}
+                        <h5><strong>Période</strong> : {{ semestre.duree }} semestre
+                            ({{ semestre.datedebut|date("d/m/Y") }}-{{ semestre.datefin|date("d/m/Y") }}
+                            ) </h5>
+                    {% else %}
+                        <h5><strong>Période</strong> : {{ semestre.duree }} semestres
+                            ({{ semestre.datedebut|date("d/m/Y") }}-{{ semestre.datefin|date("d/m/Y") }}
+                            )</h5>
+                    {% endif %}
+                    <div class="boutons pull-right">
+                        <button class=" btn btn-primary"
+                                onclick="window.location.href='{{ path('admin_modification_semestre', { 'id': semestre.id }) }}'">
+                            Modifier
+                        </button>
+                        <button type="button" class="btn btn-danger" title="Supprimer" data-toggle="modal"
+                                data-target="#semestreDialog{{ semestre.id }}"><span
+                                    class="glyphicon glyphicon-remove"></span>
+                            Supprimer
+                        </button>
+
+
+                        <div class="modal fade" id="semestreDialog{{ semestre.id }}" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">Confirmation demandée </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Êtes-vous sûr(e) de vouloir supprimer ce semestre ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                            Annuler
+                                        </button>
+                                        <a href="{{ path('admin_suppression_semestre', { 'id': semestre.id }) }}"
+                                           class="btn btn-danger">Confirmer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="tab-pane fade adminTable" id="entreprises">
+            <div class="row">
+                <button id="bouton-ajout-entreprise" class="btn btn-default"
+                        onclick="window.location.href='{{ path('admin_ajout_entreprise') }}'"><span
+                            class="glyphicon glyphicon-plus"></span> Ajouter une entreprise
+                </button>
+            </div>
+            <hr>
+            {% if entreprises %}
+                {% for entreprise in entreprises %}
+                    <h3>{{ entreprise.nom }}</h3>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img class="image-logo" src="images/photo-entreprise/{{ entreprise.logo }}" alt="Logo Entreprise" width="100%">
+                        </div>
+                        <div class="col-md-9">
+                            <h5><strong>Adresse</strong> : {{ entreprise.adresse }}</h5>
+                            <h5><strong>Pays, Ville</strong> : {{ entreprise.ville }}, {{ entreprise.pays }} </h5>
+                            <h5><strong>Contact</strong> : {{ entreprise.mail }}</h5>
+                            <h5><strong>Description</strong> : {{ entreprise.description }}</h5>
+                            <div class="boutons pull-right">
+                                <button class=" btn btn-primary"
+                                        onclick="window.location.href='{{ path('admin_modification_entreprise', { 'id': entreprise.id }) }}'">
+                                    Modifier
+                                </button>
+                                <button type="button" class="btn btn-danger" title="Supprimer" data-toggle="modal"
+                                        data-target="#entrepriseDialog{{ entreprise.id }}"><span
+                                            class="glyphicon glyphicon-remove"></span>
+                                    Supprimer
+                                </button>
+
+
+                                <div class="modal fade" id="entrepriseDialog{{ entreprise.id }}" tabindex="-1" role="dialog"
+                                     aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">Confirmation demandée </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Êtes-vous sûr(e) de vouloir supprimer cette entreprise ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                    Annuler
+                                                </button>
+                                                <a href="{{ path('admin_suppression_entreprise', { 'id': entreprise.id }) }}"
+                                                   class="btn btn-danger">Confirmer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="tab-pane fade adminTable" id="universites">
+            <div class="row">
+                <button id="bouton-ajout-universite" class="btn btn-default"
+                        onclick="window.location.href='{{ path('admin_ajout_universite') }}'"><span
+                            class="glyphicon glyphicon-plus"></span> Ajouter une université
+                </button>
+            </div>
+            <hr>
+            {% if universites %}
+                {% for universite in universites %}
+                    <h3>{{ universite.nom }}</h3>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img class="image-logo" src="images/photo-universite/{{ universite.logo }}" alt="Logo Université" width="100%">
+                        </div>
+                        <div class="col-md-9">
+                            <h5><strong>Adresse</strong> : {{ universite.adresse }}</h5>
+                            <h5><strong>Pays, Ville</strong> : {{ universite.ville }}, {{ universite.pays }} </h5>
+                            <h5><strong>Contact</strong> : {{ universite.mail }}</h5>
+                            <h5><strong>Description</strong> : {{ universite.description }}</h5>
+                            <h5><strong>Partenariat</strong> : {% if universite.partenariat ==1 %} Oui {% else %} Non {% endif %}</h5>
+                            <div class="boutons pull-right">
+                                <button class=" btn btn-primary"
+                                        onclick="window.location.href='{{ path('admin_modification_universite', { 'id': universite.id }) }}'">
+                                    Modifier
+                                </button>
+                                <button type="button" class="btn btn-danger" title="Supprimer" data-toggle="modal"
+                                        data-target="#universiteDialog{{ universite.id }}"><span
+                                            class="glyphicon glyphicon-remove"></span>
+                                    Supprimer
+                                </button>
+
+
+                                <div class="modal fade" id="universiteDialog{{ universite.id }}" tabindex="-1" role="dialog"
+                                     aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">Confirmation demandée </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Êtes-vous sûr(e) de vouloir supprimer cette université ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                    Annuler
+                                                </button>
+                                                <a href="{{ path('admin_suppression_universite', { 'id': universite.id }) }}"
+                                                   class="btn btn-danger">Confirmer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="tab-pane fade adminTable" id="comments">
+            <div class="container" id="contenu-commentaires">
+            <div class="tab-commentaire">
+                <div class="tab">
+                    <button class="tablinks" id="bouton-stage" onclick="openExperience(event, 'Stage')">Stage</button>
+                    <button class="tablinks" id="bouton-semestre" onclick="openExperience(event, 'Semestre')">Semestre
+                        d'études
+                    </button>
+                </div>
+
+                <!-- Tab content -->
+                <div id="Stage" class="tabcontent">
+                    {% if commentairesstages %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Stage</th>
+                                    <th>Contenu</th>
+                                    <th>Date</th>
+                                    <th></th>  <!-- Actions column -->
+                                </tr>
+                                </thead>
+                                {% for comment in commentairesstages %}
+                                    <tr>
+                                        <td><a class="stageTitre"
+                                               href="{{ path('stage', { 'id': comment.stage.id }) }}">{{ comment.stage.titre }}</a>
+                                        </td>
+                                        <td>{{ comment.content | truncate(100) }}</td>
+                                        <td>{{ comment.date|date("d/m/Y H:i") }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-xs" title="Supprimer"
+                                                    data-toggle="modal" data-target="#commentDialog{{ comment.id }}"><span
+                                                        class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                            <div class="modal fade" id="commentDialog{{ comment.id }}" tabindex="-1"
+                                                 role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-hidden="true">&times;</button>
+                                                            <h4 class="modal-title" id="myModalLabel">Confirmation
+                                                                demandée</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Etes-vous sûr(e) de vouloir supprimer ce commentaire ?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default"
+                                                                    data-dismiss="modal">Annuler
+                                                            </button>
+                                                            <a href="{{ path('admin_suppression_commentaire_stage', { 'id': comment.id }) }}" class="btn btn-danger">Confirmer</a>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="text-center">Aucun commentaires n'a été trouvé.</p>
+                    {% endif %}
+                </div>
+
+                <div id="Semestre" class="tabcontent">
+                    {% if commentairessemestres %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Semestre</th>
+                                    <th>Contenu</th>
+                                    <th>Date</th>
+                                    <th></th>  <!-- Actions column -->
+                                </tr>
+                                </thead>
+                                {% for comment in commentairessemestres %}
+                                    <tr>
+                                        <td><a class="semestreTitre"
+                                               href="{{ path('semestre', { 'id': comment.semestre.id }) }}">{{ comment.semestre.titre }}</a>
+                                        </td>
+                                        <td>{{ comment.content | truncate(100) }}</td>
+                                        <td>{{ comment.date|date("d/m/Y H:i") }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-xs" title="Supprimer"
+                                                    data-toggle="modal" data-target="#commentDialog{{ comment.id }}"><span
+                                                        class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                            <div class="modal fade" id="commentDialog{{ comment.id }}" tabindex="-1"
+                                                 role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-hidden="true">&times;</button>
+                                                            <h4 class="modal-title" id="myModalLabel">Confirmation
+                                                                demandée</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Etes-vous sûr(e) de vouloir supprimer ce commentaire ?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default"
+                                                                    data-dismiss="modal">Annuler
+                                                            </button>
+                                                            <a href="{{ path('admin_suppression_commentaire_semestre', { 'id': comment.id }) }}" class="btn btn-danger">Confirmer</a>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="text-center">Aucun commentaires n'a été trouvé.</p>
+                    {% endif %}
+                </div>
+
+        </div>
+        </div>
+        </div>
+        <div class="tab-pane fade adminTable" id="users">
+            <div class="container">
+            {% if users %}
+                <div class="table-responsive">
+                    <table class="table table-hover table-condensed">
+                        <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Login</th>
+                            <th>Email</th>
+                            <th>Promo</th>
+                            <th>Description</th>
+                            <th>Role</th>
+                            <th></th>  <!-- Actions column -->
+                        </tr>
+                        </thead>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.nom}}</td>
+                                <td>{{ user.prenom }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.promo }}</td>
+                                <td>{{ user.description | truncate(100) }}</td>
+                                <td>
+                                    {% if user.role == 'ROLE_ADMIN' %}
+                                        Admin
+                                    {% else %}
+                                        User
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ path('admin_modification_user', { 'id': user.id }) }}" class="btn btn-info btn-xs" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <button type="button" class="btn btn-danger btn-xs" title="Delete" data-toggle="modal" data-target="#userDialog{{ user.id }}"><span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                    <div class="modal fade" id="userDialog{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title" id="myModalLabel">Confirmation demandée</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Etes-vous sûr(e) de vouloir supprimer ce profil utilisateur ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                    <a href="{{ path('admin_suppression_user', { 'id': user.id }) }}" class="btn btn-danger">Confirmer</a>
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                    </div><!-- /.modal -->
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-warning">No users found.</div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+    </div>
+
+        <script>
+            function openExperience(evt, experienceName) {
+                // Declare all variables
+                var i, tabcontent, tablinks;
+
+                // Get all elements with class="tabcontent" and hide them
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+
+                // Get all elements with class="tablinks" and remove the class "active"
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+
+                // Show the current tab, and add an "active" class to the link that opened the tab
+                document.getElementById(experienceName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("bouton-stage").click();
+
+        </script>
+{% endblock %}
+

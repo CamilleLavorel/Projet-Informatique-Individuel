@@ -1,0 +1,17 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Ereur{% endblock %}
+
+{% block content %}
+    <div class="row" id="errorPanel" style="padding: 100px  ">
+        <div class="col-xs-5">
+            <img class="img-responsive pull-right"  src="{{ asset('/images/404-ghost.png') }}" alt="Error ghost"/>
+        </div>
+        <div class="col-xs-6">
+            <h1>Oups..<br><small>{{ message }}</small></h1>
+        </div>
+    </div>
+{% endblock %}
+
+
+

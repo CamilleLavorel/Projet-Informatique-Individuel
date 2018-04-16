@@ -1,0 +1,1559 @@
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10px;
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    text-align: center;
+    font-size:15px;
+}
+
+.articleTitle:hover, .articleTitle:focus {
+    text-decoration: none;
+}
+
+hr{
+    border-top: 1px solid #ccc;
+}
+
+body {
+    padding-top: 50px;
+    font-family: "Helvetica", sans-serif;
+    transition: background-color .5s;
+    font-size:18px;
+    text-align:justify;
+}
+
+html{
+    position: relative;
+    min-height: 100%;
+}
+
+/*MENU GAUCHE*/
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: whitesmoke;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.top-sidenav{
+    border-bottom: 1px groove white;
+}
+.main-sidenav a {
+    padding: 20px 20px 20px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+    border-bottom: 1px groove white;
+}
+
+.main-sidenav a:hover {
+    background-color: white;
+}
+
+
+.top-sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color:black;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+/*BARRE NAVIGATION HEADER*/
+.topnav {
+    background-color: whitesmoke;
+    margin-bottom: 40px;
+    position:fixed;
+    width:100%;
+    z-index:2;
+    top:0;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: dimgrey;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav .box-right a:hover{
+    border-bottom: 3px solid darkslategrey;
+}
+
+.topnav .box-right .dropbtn{
+    float: left;
+    display: block;
+    color: dimgrey;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin-right: 0; /* Important for vertical align on mobile phones */
+}
+
+
+.topnav .box-right .dropdown {
+    float: left;
+    overflow: hidden;
+    margin-right: 20px;
+    margin-left: 100px;
+
+}
+
+
+
+.dropdown-content{
+    display: none;
+    position:fixed;
+    margin-top: 55px;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.show {
+    display: block;
+}
+
+
+/*PAGE ACCUEIL*/
+
+
+.photo {
+    position: relative;
+    max-width: 100%; /* Maximum width */
+    left: 0;
+
+}
+.photo .content {
+    position: absolute; /* Position the background text */
+    bottom: 0; /* At the bottom. Use top:0 to append it to the top */
+    background: rgba(0, 0, 0, 0.3); /* Black background with 0.5 opacity */
+    color: #f1f1f1; /* Grey text */
+    width: 60%; /* Full width */
+    padding: 20px; /* Some padding */
+}
+
+.titre-section {
+    color:steelblue;
+}
+
+.image-partir{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.column {
+    display:flex;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    margin: 15px 15px 15px 15px;
+    float: left;
+    text-align: center;
+    background-color: steelblue;
+    opacity: 0.9;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.text-center{
+    color:dimgrey;
+    font-weight: bold;
+}
+.column p{
+    margin:auto;
+    color: #f1f1f1;
+    font-size: 18px;
+}
+.column:hover {
+    opacity: 1;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*PAGE PARTENARIAT*/
+
+.carte-partenariat{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+.btn-partenariat {
+    border: 2px solid darkorange;
+    text-align: center;
+    border-radius: 5px;
+    background-color: white;
+    color: darkorange;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-style: normal;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    text-decoration: none;
+
+}
+
+.btn-partenariat:hover {
+    background: darkorange;
+    color: white;
+}
+
+.titre-page h2{
+    color:darkorange;
+
+}
+
+
+/*PAGE RECHERCHE*/
+
+#map {
+    width:600px;
+    height:500px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+}
+
+.carte{
+    position : fixed;
+    margin-left:30px;
+    margin-right: 20px;
+    background-color: white;
+
+}
+
+#contenu{
+    margin-top: 6px;
+    margin-bottom:20px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+}
+
+.liste-stage{
+    margin-top: 150px;
+    position: static;
+
+}
+
+.liste-semestre{
+    margin-top: 150px;
+    position: static;
+}
+
+.liste-semestre button{
+    background-color:midnightblue;
+    color:white;
+
+}
+.liste-semestre button:hover{
+    background-color:midnightblue;
+    color:white;
+}
+
+
+.liste-stage button{
+    margin-top: 20px;
+    background-color:darkslategrey;
+    color:white;
+}
+
+.liste-stage .btn a{
+    color:white;
+}
+
+.liste-stage button:hover{
+    background-color:darkslategrey;
+    color:white;
+}
+
+.pasinscrit p{
+    font-size:14px;
+    font-weight:normal;
+
+}
+.pasinscrit a{
+    cursor: pointer;
+
+}
+
+
+.recherche-form input[type=text] {
+    width: 70%;
+    margin-left: 15px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    float: left;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    height: 40px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+}
+
+#search-semestre .search-form button{
+    float: left;
+    width: 15%;
+    padding: 10px;
+    background: darkblue;
+    color: whitesmoke;
+    font-size: 17px;
+    border: 2px solid whitesmoke;
+    border-radius: 4px;
+    cursor: pointer;
+    background-position: 10px 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+}
+
+#search-stage .search-form button {
+    float: left;
+    width: 70px;
+    height: 40px;
+    padding: 10px;
+    background: darkslategrey;
+    color: whitesmoke;
+    font-size: 17px;
+    border: 2px solid whitesmoke;
+    border-radius: 4px;
+    cursor: pointer;
+    background-position: 10px 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+}
+
+.search-form button:hover{
+    color: white;
+}
+
+.recherche-form{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    z-index: 1;
+}
+
+.card {
+    background-color: whitesmoke;
+    border-radius: 4px;
+    padding: 20px;
+    padding-top: 5px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    width:100%;
+}
+
+.liste-semestre .card a{
+    color:darkblue;
+    cursor:pointer;
+}
+
+.liste-stage .card a{
+    color:darkslategrey;
+    cursor:pointer;
+}
+
+.card p{
+    font-size: 12px;
+}
+
+
+.card:hover{
+    opacity:0.9;
+}
+
+.card .image-logo{
+    margin-top:50px;
+
+}
+
+/* CSS PAGE SEMESTRE */
+
+/*section personne*/
+
+.section-personne{
+    margin-right: 20px;
+    margin-top: 10px;
+    position: fixed;
+    padding:5px 20px 10px 20px;
+    background-color: whitesmoke;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.section-personne h3{
+    color: dimgrey;
+    font-style: italic;
+    text-align: center;
+}
+.section-personne p{
+    margin-top: 20px;
+    font-size: medium;
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+/*section semestre*/
+.semestre{
+    margin-bottom: 20px;
+}
+
+
+.semestre p{
+    font-size: medium;
+}
+
+/*section universite*/
+
+.universite{
+    margin-top: 40px;
+}
+
+.universite .ressenti p{
+    margin-top: 20px;
+    font-size: medium;
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+/*section logement semestre*/
+.logement-semestre{
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.logement-semestre p{
+    margin-top: 20px;
+    font-size: medium;
+}
+
+.logement-semestre .ressenti p{
+    margin-top: 20px;
+    font-size: medium;
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+/*section ressenti semestre*/
+
+.ressenti-semestre{
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.ressenti-semestre p{
+    margin-top: 20px;
+    font-size: medium;
+    padding: 20px 20px 20px 20px;
+    border-radius: 5px;
+    color:white;
+    background-color: midnightblue;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+}
+
+/*contenu semestre*/
+
+#contenu-semestre p{
+    font-weight: 300;
+    font-size: medium;
+}
+#contenu-semestre h5{
+    font-weight: 300;
+    font-size: medium;
+}
+
+#contenu-semestre h2{
+    color: midnightblue;
+    font-style: italic;
+}
+
+#contenu-semestre .resume{
+    margin-top:20px;
+}
+
+#contenu-semestre .resume p{
+    font-size: medium;
+}
+
+#contenu-semestre .description p{
+    font-size: medium;
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+#contenu-semestre{
+    margin-top: 6px;
+    margin-bottom:20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#contenu-semestre strong{
+    font-weight: 500;
+}
+/*section google map*/
+
+.section-carte{
+    margin-right: 20px;
+    margin-left: 25px;
+    margin-top: 275px;
+    position: fixed;
+    background-color: whitesmoke;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.section-carte #map{
+    height: 245px;
+    width: 400px;
+}
+
+.section-carte input{
+    display: none;
+}
+
+
+/*section cours semestre*/
+#contenu-semestre table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+#contenu-semestre th{
+    text-align: left;
+    font-size: medium;
+    font-weight: 600;
+    padding: 8px;
+}
+#contenu-semestre td {
+    text-align: left;
+    font-size: medium;
+    font-weight: 300;
+    padding: 8px;
+}
+
+#contenu-semestre tr:nth-child(even){background-color: #f2f2f2}
+
+/*section commentaires semestre*/
+
+
+.commentaire-semestre #comment-left{
+    display: inline-block;
+    text-align: center;
+    border-right: 1px solid lightgrey;
+}
+
+.commentaire-semestre #comment-left h4{
+    font-size: medium;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.commentaire-semestre #comment-right{
+    margin-left:20px;
+}
+
+
+.commentaire-semestre #comment-left #image_profil{
+    display: block;
+}
+
+
+.commentaire-semestre #comment-right p{
+    margin-top: 20px;
+    color: darkslategrey;
+}
+
+
+.commentaire-semestre .contenu{
+    border: 2px solid #dedede;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: medium;
+    margin: 10px 0;
+}
+/* Style images */
+.commentaire-semestre .contenu img{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 50px;
+    width: 30%;
+    border-radius: 50%;
+}
+
+/* Style time text */
+.commentaire-semestre .time{
+    color: #aaa;
+    font-style: italic;
+}
+
+.ajout-commentaire-semestre{
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.ajout-commentaire-semestre h3{
+    color:darkslategrey;
+    font-style: italic;
+}
+
+.ajout-commentaire-semestre .btn{
+    float: left;
+    width: 15%;
+    padding: 10px;
+    background: darkslategrey;
+    color: whitesmoke;
+    font-size: 17px;
+    border: 2px solid whitesmoke;
+    border-radius: 4px;
+    cursor: pointer;
+    background-position: 10px 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+}
+
+
+
+
+/* PAGE STAGE */
+
+/*contenu stage*/
+#contenu-stage{
+    margin-top: 6px;
+    margin-bottom:20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#contenu-stage h2{
+    color:darkslategrey;
+    font-style: italic;
+}
+
+#contenu-stage p{
+    font-size: medium;
+    font-weight: 300;
+}
+
+#contenu-stage strong{
+    font-weight: 500;
+}
+
+/*stage*/
+
+.stage{
+    margin-bottom: 20px;
+}
+
+.stage .description p{
+    font-size: medium;
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+
+
+/*section entreprise*/
+
+.entreprise{
+    margin-top: 40px;
+}
+
+.entreprise .ressenti p{
+    margin-top: 20px;
+    font-size: medium;
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+/*section logement stage*/
+.logement-stage{
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.logement-stage .ressenti p{
+    margin-top: 20px;
+    font-size: medium;
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+/*ressenti stage*/
+.ressenti-stage{
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.ressenti-stage p{
+    margin-top: 20px;
+    font-size: medium;
+    padding: 20px 20px 20px 20px;
+    border-radius: 5px;
+    background-color: darkslategrey;
+    color:white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+}
+
+.commentaire-stage #comment-left{
+    display: inline-block;
+    text-align: center;
+    border-right: 1px solid lightgrey;
+}
+
+.commentaire-stage #comment-left h4{
+    font-size: medium;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.commentaire-stage #comment-right{
+    margin-left:20px;
+}
+
+
+.commentaire-stage #comment-left #image_profil{
+    display: block;
+}
+
+
+.commentaire-stage #comment-right p{
+    margin-top: 20px;
+    color: darkslategrey;
+}
+
+/*commentaires stage*/
+.commentaire-stage .contenu{
+    border: 2px solid #dedede;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: medium;
+    margin: 10px 0;
+}
+/* Style images */
+.commentaire-stage .contenu img {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 60px;
+    width: 100%;
+    border-radius: 50%;
+}
+
+/* Style time text */
+.commentaire-stage .time {
+    color: #aaa;
+    font-style: italic;
+}
+
+.ajout-commentaire-stage{
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.ajout-commentaire-stage h3{
+    color:darkslategrey;
+    font-style: italic;
+}
+
+.ajout-commentaire-stage .btn{
+    float: left;
+    width: 15%;
+    padding: 10px;
+    background: darkslategrey;
+    color: whitesmoke;
+    font-size: 17px;
+    border: 2px solid whitesmoke;
+    border-radius: 4px;
+    cursor: pointer;
+    background-position: 10px 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+}
+
+#contenu-stage .section-personne h3{
+    color: darkslategrey;
+}
+
+#contenu-semestre .section-personne h3{
+    color: midnightblue;
+}
+
+/* PAGE MES EXPERIENCES */
+
+#contenu-mesexperiences{
+    margin-top: 10px;
+}
+
+#contenu-mesexperiences h4{
+    font-style: normal;
+    color:darkslategrey;
+    font-weight: 400;
+}
+
+#contenu-mesexperiences h5{
+    font-size:16px;
+}
+#contenu-mesexperiences p{
+    font-style: normal;
+    color:dimgrey;
+    font-weight: 100;
+}
+
+#contenu-mesexperiences h2{
+    color:dimgrey;
+    margin-bottom: 20px;
+}
+
+#Stage h3{
+    color: darkslategrey;
+}
+
+#Semestre h3{
+    color: midnightblue;
+}
+/* Style the tab */
+#contenu-mesexperiences .tab {
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 30%;
+    height: 400px;
+}
+
+/* Style the buttons that are used to open the tab content */
+#contenu-mesexperiences .tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+#contenu-mesexperiences .tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+#contenu-mesexperiences .tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+#contenu-mesexperiences .tabcontent {
+    overflow: scroll;
+    float: left;
+    padding: 0px 12px;
+    border: 1px solid #ccc;
+    width: 70%;
+    border-left: none;
+    height: 400px;
+}
+
+#bouton-ajout-stage{
+    text-align: center;
+    width: 50%;
+    color: white;
+    background-color: darkslategrey;
+    margin-left: 200px;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+#bouton-ajout-semestre{
+    text-align: center;
+    color: white;
+    background-color: midnightblue;
+    width: 50%;
+    margin-left: 200px;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+/* PAGE PROFIL */
+
+.profil{
+    padding: 10px 10px 10px 10px;
+    width: 500px;
+    height: 490px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: whitesmoke;
+}
+
+.profil a{
+    border: 2px solid darkorange;
+    text-align: center;
+    border-radius: 5px;
+    background: darkorange;
+    color: white;
+    padding: 5px 5px;
+    font-size: 16px;
+    font-style: normal;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    text-decoration: none;
+    width:40%;
+    margin-top: 10px;
+}
+
+.profil h4{
+    font-weight: 100;
+}
+
+.profil a:hover {
+    background: darkorange;
+    color: white;
+    border: 2px solid darkorange;
+}
+
+.photo-profil{
+    margin-top: 10px;
+}
+
+.contenu-profil p{
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    font-size: medium;
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+    background-color: white;
+    color:dimgrey;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+}
+
+
+
+.alert .alert-success{
+    margin-top: 20px;
+}
+
+#modifprofil label{
+    color: dimgrey;
+    font-size: medium;
+    font-weight: 100;
+}
+
+
+.boutons-modif-profil{
+    margin-top: 10px;
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.boutons-modif-profil .bouton-enregistrer{
+    border: 2px solid darkorange;
+    text-align: center;
+    border-radius: 5px;
+    background: darkorange;
+    color: white;
+    padding: 5px 5px;
+    font-size: 16px;
+    font-style: normal;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    text-decoration: none;
+    width:50%;
+    float: left;
+
+}
+
+.boutons-modif-profil .bouton-annuler{
+    width: 40%;
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.profil img{
+    border-radius: 50%;
+    max-width: 150px;
+    width: 100%;
+}
+
+#contenu-ajout-stage legend{
+    color: darkslategrey;
+}
+
+#contenu-ajout-stage label{
+    color: dimgrey;
+    font-size: medium;
+    font-weight: 100;
+}
+
+#contenu-ajout-semestre legend{
+    color: darkslategrey;
+}
+
+#contenu-ajout-semestre label{
+    color: dimgrey;
+    font-size: medium;
+    font-weight: 100;
+}
+
+#contenu-modif-semestre legend{
+    color: darkslategrey;
+}
+
+#contenu-modif-semestre label{
+    color: dimgrey;
+    font-size: medium;
+    font-weight: 100;
+}
+
+#contenu-modif-semestre label{
+    color: dimgrey;
+    font-size: medium;
+    font-weight: 100;
+}
+#contenu-ajout-entreprise label{
+    color: dimgrey;
+    font-size: medium;
+    font-weight: 100;
+}
+#contenu-modif-universitelabel{
+    color: dimgrey;
+    font-size: medium;
+    font-weight: 100;
+}
+#contenu-ajout-universite label{
+    color: dimgrey;
+    font-size: medium;
+    font-weight: 100;
+}
+#contenu-modif-universite img{
+    max-width: 60%;
+    height:auto;
+}
+
+#contenu-modif-stage img{
+    max-width: 60%;
+    height:auto;
+}
+
+
+#contenu-modif-semestre img{
+    max-width: 60%;
+    height:auto;
+}
+
+
+#contenu-admin img{
+    max-width: 80%;
+    height:auto;
+}
+
+#contenu-mesexperiences img{
+    max-width: 70%;
+    height:auto;
+}
+
+#contenu-modif-entreprise img{
+    max-width: 60%;
+    height:auto;
+}
+
+#contenu-modif-semestre img{
+    max-width: 60%;
+    height:auto;
+}
+
+#contenu-modif-utilisateur img{
+    max-width: 60%;
+    height:auto;
+}
+
+#contenu-modif-stage img{
+    max-width: 60%;
+    height:auto;
+}
+
+#contenu-modif-universite img{
+    max-width: 60%;
+    height:auto;
+}
+
+#contenu-modif-profil img{
+    max-width: 60%;
+    height:auto;
+}
+
+#contenu-semestre .image{
+    max-width: 80%;
+    height:auto;
+}
+
+#contenu-inscription legend{
+    color: darkslategrey;
+}
+
+#contenu-inscription label{
+    color: dimgrey;
+    font-size: medium;
+    font-weight: 100;
+}
+#contenu-inscription h5{
+    color: darkred;
+}
+
+#contenu-ajout-stage h5{
+    color: darkred;
+}
+
+#contenu-modif-stage h5{
+    color: darkred;
+}
+
+#contenu-ajout-semestre h5{
+    color: darkred;
+}
+
+#contenu-modif-semestre h5{
+    color: darkred;
+}
+#contenu-ajout-entreprise h5{
+    color: darkred;
+}
+
+#contenu-modif-entreprise h5{
+    color: darkred;
+}
+#contenu-ajout-universite h5{
+    color: darkred;
+}
+
+#contenu-modif-universite h5{
+    color: darkred;
+}
+
+.boutons-modif-stage .bouton-enregistrer{
+    border: 2px solid darkslategrey;
+    text-align: center;
+    border-radius: 5px;
+    background: darkslategrey;
+    color: white;
+    padding: 5px 5px;
+    font-size: 16px;
+    font-style: normal;
+    cursor: pointer;
+    text-decoration: none;
+    width:40%;
+    float: left;
+    margin-right:50px;
+
+}
+.boutons-modif-stage .bouton-enregistrer:hover{
+    opacity: 0.8;
+
+}
+
+.boutons-entreprise .bouton-annuler{
+    width: 40%;
+    margin-left: 100px;
+    font-size: 16px;
+}
+
+
+.boutons-entreprise .bouton-enregistrer{
+    border: 2px solid darkslategrey;
+    text-align: center;
+    border-radius: 5px;
+    background: darkslategrey;
+    color: white;
+    padding: 5px 5px;
+    font-size: 16px;
+    font-style: normal;
+    cursor: pointer;
+    text-decoration: none;
+    width:40%;
+    float: left;
+    margin-right:50px;
+
+}
+.boutons-entreprise .bouton-enregistrer:hover{
+    opacity: 0.8;
+
+}
+
+.boutons-entreprise .bouton-annuler{
+    width: 40%;
+    margin-left: 100px;
+    font-size: 16px;
+}
+
+
+.boutons-universite .bouton-enregistrer{
+    border: 2px solid darkslategrey;
+    text-align: center;
+    border-radius: 5px;
+    background: darkslategrey;
+    color: white;
+    padding: 5px 5px;
+    font-size: 16px;
+    font-style: normal;
+    cursor: pointer;
+    text-decoration: none;
+    width:40%;
+    float: left;
+    margin-right:50px;
+
+}
+.boutons-universite .bouton-enregistrer:hover{
+    opacity: 0.8;
+
+}
+
+.boutons-universite .bouton-annuler{
+    width: 40%;
+    margin-left: 100px;
+    font-size: 16px;
+}
+
+.boutons-ajout-stage .bouton-enregistrer{
+    border: 2px solid darkslategrey;
+    text-align: center;
+    border-radius: 5px;
+    background: darkslategrey;
+    color: white;
+    padding: 5px 5px;
+    font-size: 16px;
+    font-style: normal;
+    cursor: pointer;
+    text-decoration: none;
+    width:40%;
+    float: left;
+    margin-right:50px;
+}
+
+.boutons-ajout-stage .bouton-enregistrer:hover{
+    opacity: 0.8;
+
+}
+
+.boutons-ajout-stage .bouton-annuler{
+    width: 40%;
+    margin-left: 100px;
+    font-size: 16px;
+}
+
+
+.boutons-ajout-semestre .bouton-enregistrer{
+    border: 2px solid midnightblue;
+    text-align: center;
+    border-radius: 5px;
+    background: midnightblue;
+    color: white;
+    padding: 5px 5px;
+    font-size: 16px;
+    font-style: normal;
+    cursor: pointer;
+    text-decoration: none;
+    width:40%;
+    float: left;
+    margin-right:50px;
+}
+
+.boutons-ajout-semestre .bouton-enregistrer:hover{
+    opacity: 0.8;
+
+}
+
+.boutons-modif-semestre .bouton-annuler{
+    width: 40%;
+    margin-left: 100px;
+    font-size: 16px;
+}
+
+.boutons-modif-semestre .bouton-enregistrer{
+    border: 2px solid midnightblue;
+    text-align: center;
+    border-radius: 5px;
+    background: midnightblue;
+    color: white;
+    padding: 5px 5px;
+    font-size: 16px;
+    font-style: normal;
+    cursor: pointer;
+    text-decoration: none;
+    width:40%;
+    float: left;
+    margin-right:50px;
+}
+
+.boutons-modif-semestre .bouton-enregistrer:hover{
+    opacity: 0.8;
+
+}
+
+.boutons-modif-semestre .bouton-annuler{
+    width: 40%;
+    margin-left: 100px;
+    font-size: 16px;
+}
+
+.champ-cache{
+    display:none;
+}
+
+
+
+#contenu-ajout-stage label.required:before{
+    content: "*";
+    color:darkred;
+}
+
+#contenu-ajout-semestre label.required:before{
+    content: "*";
+    color:darkred;
+}
+
+#contenu-modif-semestre label.required:before{
+    content: "*";
+    color:darkred;
+}
+#contenu-modif-entreprise label.required:before{
+    content: "*";
+    color:darkred;
+}
+#contenu-ajout-entreprise label.required:before{
+    content: "*";
+    color:darkred;
+}
+
+#contenu-modif-universite label.required:before{
+    content: "*";
+    color:darkred;
+}
+#contenu-ajout-universite label.required:before{
+    content: "*";
+    color:darkred;
+}
+
+#contenu-inscription label.required:before{
+    content: "*";
+    color:darkred;
+}
+
+#contenu-ajout-stage .motif label{
+    margin-right: 30px;
+    margin-left: 5px;
+}
+
+#contenu-ajout-semestre .motif label{
+    margin-right: 30px;
+    margin-left: 5px;
+}
+
+#contenu-modif-semestre .motif label{
+    margin-right: 30px;
+    margin-left: 5px;
+}
+
+#contenu-modif-stage .motif label{
+    margin-right: 30px;
+    margin-left: 5px;
+}
+
+
+#contenu-mescommentaires h2{
+    color:dimgrey;
+    margin-bottom: 20px;
+}
+/* Style the tab */
+#contenu-mescommentaires .tab{
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+#contenu-mescommentaires .tab button{
+    background-color: inherit;
+    display:inline-block;
+    border: none;
+    float:left;
+    color:dimgrey;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    width: 50%;
+}
+
+#contenu-mescommentaires #bouton-stage.active{
+    background-color: darkslategrey;
+    color:white;
+}
+
+#contenu-mescommentaires #bouton-semestre.active{
+    background-color: midnightblue;
+    color:white;
+}
+
+/* Change background color of buttons on hover */
+#contenu-mescommentaires .tab button:hover{
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+#contenu-mescommentaires .tab button.active{
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+#contenu-mescommentaires .tabcontent{
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+#contenu-mescommentaires .tab-mescommentaire{
+    margin-top:20px;
+}
+
+
+/* Style the tab */
+#contenu-commentaires .tab{
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+#contenu-commentaires .tab button{
+    background-color: inherit;
+    display:inline-block;
+    border: none;
+    float:left;
+    color:dimgrey;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    width: 50%;
+}
+
+#contenu-commentaires #bouton-stage.active{
+    background-color: darkslategrey;
+    color:white;
+}
+
+#contenu-commentaires #bouton-semestre.active{
+    background-color: midnightblue;
+    color:white;
+}
+
+/* Change background color of buttons on hover */
+#contenu-commentaires .tab button:hover{
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+#contenu-commentaires .tab button.active{
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+#contenu-commentaires .tabcontent{
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+#contenu-commentaires .tab-commentaire{
+    margin-top:20px;
+}
+
+#contenu-admin #users .table{
+    margin-top:20px;
+    font-weight: 300;
+}
+
+#contenu-admin h5{
+    font-size: 17px;
+    font-weight: 300;
+}
+
+.contenu-index{
+    padding-bottom: 50px;
+}
+
+#contenu-infospratiques h3{
+    color: midnightblue;
+}
+
+#contenu-infospratiques li{
+    font-weight: 300;
+}
+
+#contenu-infospratiques{
+    margin-bottom: 30px;
+}

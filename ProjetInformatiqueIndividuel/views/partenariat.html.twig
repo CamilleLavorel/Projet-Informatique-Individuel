@@ -1,0 +1,35 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Partenariats{% endblock %}
+
+{% block content %}
+
+
+    <div class="container">
+        <div class="titre-page">
+            <h2 class="text-center"> Les partenariats de l'ENSC </h2>
+        </div>
+
+        <p>Les élèves-ingénieurs peuvent partir un semestre ou une année dès le 1er semestre de 2e année chez l'un des
+            partenaires de l'ENSC. Cette mobilité se fait généralement par le biais de programmes d’échanges : Erasmus+,
+            CREPUQ, conventions internationales.
+
+            Pour ce faire, l’ENSC a tissé des relations privilégiées avec des établissements dans de nombreux pays.
+            <br><br>Vous trouverez sur la carte ci-dessous différents établissements partenaires mais aussi quelques
+            lieux de stages.
+        </p>
+    </div>
+
+    <div class="container">
+        <img class="carte-partenariat" src="images/cartepartenariat.png" alt="Carte des partenariats de l'ENSC"
+             width="100%" height="500">
+    </div>
+
+    <div class="container">
+        <button class="btn-partenariat"
+                onclick="window.open('https://inpb.moveonfr.com/publisher/1/fra'); return false;">Voir tous les
+            partenariats universitaires
+        </button>
+    </div>
+
+{% endblock %}

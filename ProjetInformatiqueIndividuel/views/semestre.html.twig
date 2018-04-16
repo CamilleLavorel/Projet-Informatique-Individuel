@@ -1,0 +1,188 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Semestre{% endblock %}
+
+{% block content %}
+
+    <div class="container" id="contenu-semestre">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="semestre">
+                    <h2>{{ semestre.titre }}</h2>
+                    <hr>
+                    {% if semestre.photo %}
+                        <img class="image-semestre" src="/images/photo-semestre/{{ semestre.photo }}" alt="Photo semestre"
+                             width="100%" height="300">
+                    {% endif %}
+                    <div class="resume">
+                        <p><strong>Année d'école</strong> : {{ semestre.annee }}</p>
+                        {% if semestre.duree ==1 %}
+                            <p><strong>Durée du séjour</strong> : {{ semestre.duree }} semestre</p>
+                        {% else %}
+                            <p><strong>Durée du séjour</strong> : {{ semestre.duree }} semestre(s)</p>
+                        {% endif %}
+                        <p><strong>Période</strong> : {{ semestre.datedebut|date("d/m/Y") }}
+                            - {{ semestre.datefin|date("d/m/Y") }}</p>
+                        <p><strong>Description de l'expérience</strong> :</p>
+                    </div>
+                    <div class="description">
+                        <p>{{ semestre.description }}</p>
+                    </div>
+                </div>
+                <div class="universite">
+                    <h2 style="display:inline">L'Université : </h2>
+                    <h3 style="display:inline">{{ semestre.universite.nom }}</h3>
+                    <hr>
+                    {% if semestre.universite.logo %}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img class="image" src="/images/photo-universite/{{ semestre.universite.logo }}"
+                                     alt="Logo universite" width="100%">
+                            </div>
+                            <div class="col-md-8">
+                                <p><strong>Adresse</strong> : {{ semestre.universite.adresse }}</p>
+                                <p><strong>Contact</strong> : {{ semestre.universite.mail }}</p>
+                                <p><strong>Description</strong> : {{ semestre.universite.description }}</p>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="ressenti">
+                                <p><strong>Ressenti</strong> : {{ semestre.ressentiuniversite }} </p>
+                            </div>
+
+                        </div>
+                    {% else %}
+                        <div>
+                            <p><strong>Adresse</strong> : {{ semestre.universite.adresse }}</p>
+                            <p><strong>Contact</strong> : {{ semestre.universite.mail }}</p>
+                            <p><strong>Description</strong> : {{ semestre.universite.description }}</p>
+                        </div>
+                        <div class="ressenti">
+                            <p><strong>Ressenti</strong> : {{ semestre.ressentiuniversite }} </p>
+                        </div>
+                    {% endif %}
+
+
+                    <div class="cours-semestre">
+                        <h2>Les Cours</h2>
+                        <hr>
+                        <div style="overflow-x:auto;">
+                            <table>
+                                <tr>
+                                    <th><h5></h5>Titre</th>
+                                    <th>Description</th>
+                                    <th>Ressenti</th>
+                                </tr>
+
+                                    {% for cour in cours %}
+                                    <tr>
+                                    <td>{{ cour.titre }}</td>
+                                    <td>{{ cour.description }}</td>
+                                    <td>{{ cour.ressenti }}</td>
+                                    </tr>
+                                    {% endfor %}
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="logement-semestre">
+                        <h2>Le Logement</h2>
+                        <hr>
+                        {% if semestre.logement %}
+                            <div class="contenu">
+                                <p><strong>Adresse</strong> : {{ semestre.logement.adresse }}</p>
+                                <p><strong>Description</strong> : {{ semestre.logement.description }}</p>
+                                <p><strong>Budget mensuel</strong> : {{ semestre.logement.budget }} </p>
+                                <p><strong>Contact</strong> : {{ semestre.logement.contact }}</p>
+                            </div>
+                            <div class="ressenti">
+                                <p><strong>Ressenti</strong> : {{ semestre.logement.ressenti }}</p>
+                            </div>
+                        {% else %}
+                            <h4 class="text-center"> L'auteur n'a pas renseigné de logement pour son semestre </h4>
+                        {% endif %}
+                    </div>
+                    <div class="ressenti-semestre">
+                        <h2>Le ressenti global sur l'expérience </h2>
+                        <hr>
+                        <p>{{ semestre.ressentisemestre }}</p>
+                    </div>
+                    <div class="commentaire-semestre">
+                        <h2>Commentaires </h2>
+                        <hr>
+                        {% for comment in comments %}
+                            <div class="contenu">
+                                <div class="row">
+                                    <div class=" col-xs-3 col-sm-3" id="comment-left">
+                                        <div class="row" id="image_profil"><img class="image"
+                                                                                src="/images/photo-profil/{{ comment.auteur.photo }}"
+                                                                                alt="Avatar"></div>
+                                        <div class="row"><h4>
+                                                <strong>{{ comment.auteur.prenom }} {{ comment.auteur.nom }}</strong>
+                                            </h4></div>
+                                    </div>
+                                    <div class="col-xs-8 col-sm-8" id="comment-right">
+                                        <div class="row"><span class="time"> le {{ comment.date|date("d/m/Y") }}
+                                                à {{ comment.date|date("H:i") }} </span></div>
+                                        <div class="row"><p>{{ comment.content }}</p></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% else %}
+                            <p>Il n'y a pas encore de commentaires.</p>
+                        {% endfor %}
+                    </div>
+                    <div class="ajout-commentaire-semestre">
+                        <h3>Ajouter un commentaire </h3>
+                        <hr>
+                        {% for flashMessage in app.session.flashbag.get('success') %}
+                            <div class="alert alert-success">
+                                {{ flashMessage }}
+                            </div>
+                        {% endfor %}
+                        {% if commentForm %}
+                            {{ form_start(commentForm) }}
+                            <div class="form-group">
+                                {{ form_errors(commentForm.content) }}
+                                {{ form_widget(commentForm.content, { 'attr':  {
+                                    'rows': '4',
+                                    'class': 'form-control',
+                                    'placeholder': 'Entrez votre commentaire'
+                                }}) }}
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Publier"/>
+                            </div>
+                            {{ form_end(commentForm) }}
+
+                        {% else %}
+                            <p><a href="{{ path('login') }} ">Connectez-vous </a> pour pouvoir ajouter un commentaire.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="section-personne">
+                    <h3>{{ semestre.auteur.prenom }} {{ semestre.auteur.nom }}</h3>
+                    <hr>
+                    <h4>Promo {{ semestre.auteur.promo }}</h4>
+                    <h4><a href="mailto:{{ semestre.auteur.email }}"
+                           title="Adresse mail (messagerie)">{{ semestre.auteur.email }}</a></h4>
+                    <p> " {{ semestre.auteur.description }}"</p>
+                </div>
+                <div class="section-carte">
+                    <div id="map"></div>
+                    <input id="ville" type="text" value="{{ semestre.universite.ville }}"/>
+                    <input id="universite" type="text" value="{{ semestre.universite.adresse }}"/>
+                    <input id="nom_universite" type="text" value="{{ semestre.universite.nom }}"/>
+                    <input id="logement" type="text" value="{{ semestre.logement.adresse }}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdZKJPUQeDqRN4v5kgO0t8unvVjhzdvfE&libraries=places"></script>
+    <script type="text/javascript" src="{{ asset('/lib/js/map_semestre.js') }}"></script>
+{% endblock %}

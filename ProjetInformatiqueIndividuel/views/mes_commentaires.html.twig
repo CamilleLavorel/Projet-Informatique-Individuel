@@ -1,0 +1,165 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Mes commentaires{% endblock %}
+
+{% block content %}
+
+    <div class="container" id="contenu-mescommentaires">
+        <div class="titre-page">
+            <h2 class="text-center"> Mes commentaires </h2>
+        </div>
+        {% for flashMessage in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+        <div class="tab-mescommentaire">
+            <div class="tab">
+                <button class="tablinks" id="bouton-stage" onclick="openExperience(event, 'Stage')">Stage</button>
+                <button class="tablinks" id="bouton-semestre" onclick="openExperience(event, 'Semestre')">Semestre
+                    d'études
+                </button>
+            </div>
+
+            <!-- Tab content -->
+            <div id="Stage" class="tabcontent">
+                {% if commentairesstages %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Stage</th>
+                                <th>Contenu</th>
+                                <th>Date</th>
+                                <th></th>  <!-- Actions column -->
+                            </tr>
+                            </thead>
+                            {% for comment in commentairesstages %}
+                                <tr>
+                                    <td><a class="stageTitre"
+                                           href="{{ path('stage', { 'id': comment.stage.id }) }}">{{ comment.stage.titre }}</a>
+                                    </td>
+                                    <td>{{ comment.content | truncate(100) }}</td>
+                                    <td>{{ comment.date|date("d/m/Y H:i") }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-xs" title="Supprimer"
+                                                data-toggle="modal" data-target="#commentStageDialog{{ comment.id }}"><span
+                                                    class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                        <div class="modal fade" id="commentStageDialog{{ comment.id }}" tabindex="-1"
+                                             role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title" id="myModalLabel">Confirmation
+                                                            demandée</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Etes-vous sûr(e) de vouloir supprimer ce commentaire ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default"
+                                                                data-dismiss="modal">Annuler
+                                                        </button>
+                                                        <a href="{{path('mescommentaires_stage_suppression', { 'id': comment.stage.id }) }}" class="btn btn-danger">Confirmer</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-center">Aucun commentaires n'a été trouvé.</p>
+                {% endif %}
+            </div>
+
+            <div id="Semestre" class="tabcontent">
+                {% if commentairessemestres %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Semestre</th>
+                                <th>Contenu</th>
+                                <th>Date</th>
+                                <th></th>  <!-- Actions column -->
+                            </tr>
+                            </thead>
+                            {% for comment in commentairessemestres %}
+                                <tr>
+                                    <td><a class="semestreTitre"
+                                           href="{{ path('semestre', { 'id': comment.semestre.id }) }}">{{ comment.semestre.titre }}</a>
+                                    </td>
+                                    <td>{{ comment.content | truncate(100) }}</td>
+                                    <td>{{ comment.date|date("d/m/Y H:i") }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-xs" title="Supprimer"
+                                                data-toggle="modal" data-target="#commentSemestreDialog{{ comment.id }}"><span
+                                                    class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                        <div class="modal fade" id="commentSemestreDialog{{ comment.id }}" tabindex="-1"
+                                             role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title" id="myModalLabel">Confirmation
+                                                            demandée</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Etes-vous sûr(e) de vouloir supprimer ce commentaire ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default"
+                                                                data-dismiss="modal">Annuler
+                                                        </button>
+                                                        <a href="{{path('mescommentaires_semestre_suppression', { 'id': comment.semestre.id }) }}" class="btn btn-danger">Confirmer</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-center">Aucun commentaires n'a été trouvé.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openExperience(evt, experienceName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the link that opened the tab
+            document.getElementById(experienceName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("bouton-stage").click();
+
+    </script>
+
+{% endblock %}

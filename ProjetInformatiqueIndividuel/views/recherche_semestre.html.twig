@@ -1,0 +1,310 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Recherche semestre{% endblock %}
+
+{% block content %}
+
+    <div class="container" id="contenu">
+
+        <div class="row" id="search-stage">
+            <div class="recherche-form">
+                <h3 class="text-center" style="color: midnightblue">Liste des semestres d'études à l'étranger</h3>
+                <div class="col-md-6">
+                    {{ form_start(recherchePaysVilleForm) }}
+                    <fieldset>
+                        <div class="search-form">
+                            <div class="form-group">
+                                {{ form_errors(recherchePaysVilleForm.adresse) }}
+                                {{ form_widget(recherchePaysVilleForm.adresse, { 'attr':  {
+                                    'rows': '1',
+                                    'class': 'form-control',
+                                    'placeholder': 'Search'
+                                }}) }}
+                            </div>
+                            <div class="champ-cache">
+                                <div class="form-group">
+                                    <div class="col-sm-8">
+
+                                        {{ form_errors(recherchePaysVilleForm.ville) }}
+                                        {{ form_widget(recherchePaysVilleForm.ville, { 'attr':  {
+                                            'rows': '1',
+                                            'class': 'form-control'
+                                        }}) }}
+
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-8">
+
+                                        {{ form_errors(recherchePaysVilleForm.pays) }}
+                                        {{ form_widget(recherchePaysVilleForm.pays, { 'attr':  {
+                                            'rows': '1',
+                                            'class': 'form-control'
+                                        }}) }}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button id="submit" type="submit" style="background-color:midnightblue"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+
+                        </div>
+                    </fieldset>
+
+                    {{ form_end(recherchePaysVilleForm) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="content">
+
+            <div class="col-lg-6">
+                <div class="liste-semestre">
+
+                    {% for semestre in semestres %}
+
+                        <div class="card">
+
+
+                            {% if semestre.universite.logo %}
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h3>
+                                            <a href="{{ path('semestre', { 'id': semestre.id }) }}">{{ semestre.titre }} </a>
+                                        </h3>
+                                        <h5><strong>Université</strong> : {{ semestre.universite.nom }}</h5>
+                                        <h5><strong>Lieu</strong> : {{ semestre.universite.ville }}
+                                            , {{ semestre.universite.pays }}</h5>
+                                        <h5><strong>Etudiant(e)</strong>
+                                            : {{ semestre.auteur.prenom }} {{ semestre.auteur.nom }}</h5>
+                                        <h5><strong>Année d'école</strong> : {{ semestre.annee }} </h5>
+                                        {% if semestre.duree==1 %}
+                                            <h5><strong>Période</strong> : {{ semestre.duree }} semestre
+                                                ({{ semestre.datedebut|date("d/m/Y") }}
+                                                -{{ semestre.datefin|date("d/m/Y") }}) </h5>
+                                        {% else %}
+                                            <h5><strong>Période</strong> : {{ semestre.duree }} semestres
+                                                ({{ semestre.datedebut|date("d/m/Y") }}
+                                                -{{ semestre.datefin|date("d/m/Y") }})</h5>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img class="image-logo" src="images/photo-universite/{{ semestre.universite.logo }}"
+                                             alt="Logo Université" width="100%">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div>
+                                    <h3>
+                                        <a href="{{ path('semestre', { 'id': semestre.id }) }}">{{ semestre.titre }} </a>
+                                    </h3>
+                                    <h5><strong>Université</strong> : {{ semestre.universite.nom }}</h5>
+                                    <h5><strong>Lieu</strong> : {{ semestre.universite.ville }}
+                                        , {{ semestre.universite.pays }}</h5>
+                                    <h5><strong>Etudiant(e)</strong>
+                                        : {{ semestre.auteur.prenom }} {{ semestre.auteur.nom }}</h5>
+                                    <h5><strong>Année d'école</strong> : {{ semestre.annee }} </h5>
+                                    {% if semestre.duree==1 %}
+                                        <h5><strong>Période</strong> : {{ semestre.duree }} semestre
+                                            ({{ semestre.datedebut|date("d/m/Y") }}-{{ semestre.datefin|date("d/m/Y") }}
+                                            ) </h5>
+                                    {% else %}
+                                        <h5><strong>Période</strong> : {{ semestre.duree }} semestres
+                                            ({{ semestre.datedebut|date("d/m/Y") }}-{{ semestre.datefin|date("d/m/Y") }}
+                                            )</h5>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                            <div class="row">
+                                <div class="col-md-6"></div>
+                                <div class="col-md-6">
+                                    <button class="btn pull-right"
+                                            onclick="window.location.href='{{ path('semestre', { 'id': semestre.id }) }}';">
+                                        En
+                                        savoir plus
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="card">
+
+                            <div class="row">
+                                <h3 class="text-center"> Aucun semestre n'a été trouvé pour cette destination </h3>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="carte">
+                    <div id="map"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdZKJPUQeDqRN4v5kgO0t8unvVjhzdvfE&libraries=places"></script>
+
+    <script type="text/javascript" src="{{ asset('/lib/js/autocomplete.js') }}"></script>
+
+    <script>
+
+        var tab ={{ semestres|json_encode()|raw }};
+        var i;
+        var length_tab = {{ nbsemestres }}; //retourne le nombre d'élements dans le tableau "stages"
+        var tab_adresse = [];
+        var tab_nom = [];
+        for (i = 1; i < length_tab + 1; i++) {
+            if (tab[i]) {
+                tab_adresse.push(tab[i]['universite']['adresse']);
+                tab_nom.push(tab[i]['universite']['nom']);
+            }
+
+        }
+        console.log(tab);
+        console.log(tab_adresse);
+
+
+        function getCoordinates(geocoder, addresse, callback) {
+            var coordinates;
+            geocoder.geocode({'address': addresse}, function (results, status) {
+                coords_obj = results[0].geometry.location;
+                coordinates = [coords_obj.lat(), coords_obj.lng()];
+                callback(coordinates);
+            })
+
+        }
+
+        var map;
+
+        function initMap() {
+
+            var adresse = "{{ adresse }}";
+            var pays = "{{ pays }}";
+            var ville = "{{ ville }}";
+            var mapCanvas = document.getElementById("map");
+            var geocoder = new google.maps.Geocoder;
+
+            if (adresse) {
+                if (adresse == ville) {
+                    getCoordinates(geocoder, adresse, function (coords) {
+                        //options de la carte : zoom et centre
+                        var mapOptions = {
+                            zoom: 11,
+                            center: new google.maps.LatLng(coords[0], coords[1])
+                        };
+                        map = new google.maps.Map(mapCanvas, mapOptions);
+
+                    });
+                }
+
+                if (adresse == pays) {
+                    if (adresse == "Canada" || adresse == "États-Unis" || adresse == "Brésil" || adresse == "Argentine") {
+                        getCoordinates(geocoder, adresse, function (coords) {
+                            //options de la carte : zoom et centre
+                            var mapOptions = {
+                                zoom: 3,
+                                center: new google.maps.LatLng(coords[0], coords[1])
+                            };
+                            map = new google.maps.Map(mapCanvas, mapOptions);
+
+                        });
+                    }
+                    else if (adresse == "Chine" || adresse == "Inde" || adresse == "Australie" || adresse == "Algérie") {
+                        getCoordinates(geocoder, adresse, function (coords) {
+                            //options de la carte : zoom et centre
+                            var mapOptions = {
+                                zoom: 4,
+                                center: new google.maps.LatLng(coords[0], coords[1])
+                            };
+                            map = new google.maps.Map(mapCanvas, mapOptions);
+
+                        });
+                    }
+
+                    else if (adresse == "Russie") {
+                        getCoordinates(geocoder, adresse, function (coords) {
+                            //options de la carte : zoom et centre
+                            var mapOptions = {
+                                zoom: 2,
+                                center: new google.maps.LatLng(coords[0], coords[1])
+                            };
+                            map = new google.maps.Map(mapCanvas, mapOptions);
+
+                        });
+                    }
+                    else {
+                        getCoordinates(geocoder, adresse, function (coords) {
+                            //options de la carte : zoom et centre
+                            var mapOptions = {
+                                zoom: 5,
+                                center: new google.maps.LatLng(coords[0], coords[1])
+                            };
+                            map = new google.maps.Map(mapCanvas, mapOptions);
+
+                        });
+                    }
+
+                }
+            }
+
+            else {
+
+                //options de la carte : zoom et centre
+                var mapOptions = {
+                    center: new google.maps.LatLng(51.5, -0.2),
+                    zoom: 1
+                };
+                map = new google.maps.Map(mapCanvas, mapOptions);
+
+            }
+
+            if (tab_adresse) {
+                for (i = 0; i < tab_adresse.length; i++) {
+                    /* AJOUT DUN MARQUEUR POUR L'ENTREPRISE */
+                    /*Récupére la latitude et la longitude de l'entreprise associée au stage pour créer un marqueur
+                     sur la carte à cet endroit dès le chargement de la page */
+                    getCoordinates(geocoder, tab_adresse[i], function (coords) {
+
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(coords[0], coords[1]),
+                            map: map
+
+                        });
+
+                        /*Lors du clic sur le markeur, zoom sur l'adresse de l'entreprise + fenetre avec le nom de l'entreprise */
+                        google.maps.event.addListener(marker, 'click', function () {
+
+                            var pos = map.getZoom();
+                            map.setZoom(10);
+                            map.setCenter(marker.getPosition());
+                            window.setTimeout(function () {
+                                map.setZoom(pos);
+                            }, 5000);
+                        });
+                    });
+                }
+            }
+
+
+        }
+        google.maps.event.addDomListener(window, 'load', initMap());
+
+    </script>
+
+{% endblock %}
+
+
+
+
+
+

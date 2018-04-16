@@ -1,0 +1,377 @@
+{% extends "layout.html.twig" %}
+
+{% block title %} Modification Stage{% endblock %}
+
+{% block content %}
+
+
+    <h2 class="text-center">Modification d'un stage</h2>
+
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    <div class="container" id="contenu-modif-stage">
+
+        {{ form_start(stageForm, { 'attr': {'class': 'form-horizontal'} }) }}
+        <div class="well">
+            <fieldset>
+                <legend> Informations générales sur le stage</legend>
+                <div class="form-group">
+                    {{ form_label(stageForm.titre, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.titre) }}
+                        {{ form_widget(stageForm.titre, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.annee, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.annee) }}
+                        {{ form_widget(stageForm.annee, { 'attr':  {
+                            'class': 'motif',
+                            'rows': '1'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.duree, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.duree) }}
+                        {{ form_widget(stageForm.duree, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.datedebut, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.datedebut) }}
+                        {{ form_widget(stageForm.datedebut, { 'attr':  {
+                            'rows': '1'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.datefin, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.datefin) }}
+                        {{ form_widget(stageForm.datefin, { 'attr':  {
+                            'rows': '1'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.sujet, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.sujet) }}
+                        {{ form_widget(stageForm.sujet, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.description, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.description) }}
+                        {{ form_widget(stageForm.description, { 'attr':  {
+                            'rows': '3',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.ressentistage, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.ressentistage) }}
+                        {{ form_widget(stageForm.ressentistage, { 'attr':  {
+                            'rows': '3',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="well">
+            <fieldset>
+                <legend> Informations sur l'entreprise</legend>
+                <div style="display: none;">
+                    <div class="form-group">
+                        {{ form_label(stageForm.entreprise.id, null, { 'label_attr':  {
+                            'class': 'col-sm-5 control-label'
+                        }}) }}
+                        <div class="col-sm-4">
+                            {{ form_errors(stageForm.entreprise.id) }}
+                            {{ form_widget(stageForm.entreprise.id, { 'attr':  {
+                                'rows': '1',
+                                'class': 'form-control'
+                            }}) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.entreprise.nom, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.entreprise.nom) }}
+                        {{ form_widget(stageForm.entreprise.nom, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.entreprise.adresse, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.entreprise.adresse) }}
+                        {{ form_widget(stageForm.entreprise.adresse, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.entreprise.ville, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.entreprise.ville) }}
+                        {{ form_widget(stageForm.entreprise.ville, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.entreprise.pays, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.entreprise.pays) }}
+                        {{ form_widget(stageForm.entreprise.pays, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.entreprise.mail, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.entreprise.mail) }}
+                        {{ form_widget(stageForm.entreprise.mail, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.entreprise.description, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.entreprise.description) }}
+                        {{ form_widget(stageForm.entreprise.description, { 'attr':  {
+                            'rows': '3',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.ressentientreprise, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.ressentientreprise) }}
+                        {{ form_widget(stageForm.ressentientreprise, { 'attr':  {
+                            'rows': '3',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.entreprise.logo, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.entreprise.logo) }}
+                        {{ form_widget(stageForm.entreprise.logo, { 'attr':  {
+                            'rows': '1'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-5 control-label">Logo actuel de l'entreprise :</label>
+                    {% if photo_entreprise %}
+                        <div class="col-sm-4">
+                            <img src="/images/photo-entreprise/{{ photo_entreprise }}">
+                        </div>
+                    {% else %}
+                        <div class="col-sm-4">
+                            <h5>Le logo de l'entreprise n'a pas encore été renseigné </h5>
+                        </div>
+                    {% endif %}
+                </div>
+            </fieldset>
+        </div>
+        <div class="well">
+            <fieldset>
+                <legend> Informations générales sur le logement</legend>
+                <h5 class="pull-right">* champs obligatoires</h5>
+                <div class="form-group">
+                    {{ form_label(stageForm.logement.adresse, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.logement.adresse) }}
+                        {{ form_widget(stageForm.logement.adresse, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.logement.ville, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.logement.ville) }}
+                        {{ form_widget(stageForm.logement.ville, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.logement.pays, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.logement.pays) }}
+                        {{ form_widget(stageForm.logement.pays, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.logement.description, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.logement.description) }}
+                        {{ form_widget(stageForm.logement.description, { 'attr':  {
+                            'rows': '3',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.logement.contact, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.logement.contact) }}
+                        {{ form_widget(stageForm.logement.contact, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.logement.ressenti, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.logement.ressenti) }}
+                        {{ form_widget(stageForm.logement.ressenti, { 'attr':  {
+                            'rows': '3',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(stageForm.logement.budget, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(stageForm.logement.budget) }}
+                        {{ form_widget(stageForm.logement.budget, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+        <div class="form-group">
+            <div class="boutons-modif-stage">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    <button type="submit" class="bouton-enregistrer btn btn-default btn-primary center-block left"><span
+                                class="glyphicon glyphicon-log-in"></span> Enregistrer
+                    </button>
+                    <button class="bouton-annuler btn btn-default btn-primary center-block left" title="Supprimer"
+                            data-toggle="modal" data-target="#myModal">Annuler
+                    </button>
+                    <!-- Fenetre modale : confirmation pour quitter la page -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Confirmation demandée </h4>
+                                </div>
+                                <div class="modal-body">
+                                    Êtes-vous sûr(e) de vouloir quitter la page ? Les informations ne seront pas
+                                    sauvegardées.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                    <a href="javascript:history.go(-1)" class="btn btn-danger">Confirmer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ form_end(stageForm) }}
+    </div>
+
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdZKJPUQeDqRN4v5kgO0t8unvVjhzdvfE&libraries=places"></script>
+
+    <script type="text/javascript" src="{{ asset('/lib/js/autocomplete_stage_entreprise.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/lib/js/autocomplete_logement_stage.js') }}"></script>
+{% endblock %}

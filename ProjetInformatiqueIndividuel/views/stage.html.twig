@@ -1,0 +1,164 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Stage{% endblock %}
+
+{% block content %}
+
+
+    <div class="container" id="contenu-stage">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="stage">
+                    <h2>{{ stage.titre }}</h2>
+                    <hr>
+                    <div class="resume">
+                        <p><strong>Année d'école</strong> : {{ stage.annee }}</p>
+                        <p><strong>Durée du stage</strong> : {{ stage.duree }}</p>
+                        <p><strong>Période</strong> : {{ stage.datedebut|date("d/m/Y") }}
+                            - {{ stage.datefin|date("d/m/Y") }}</p>
+                        <p><strong>Sujet du stage</strong> : {{ stage.sujet }}</p>
+                        <p><strong>Description de l'expérience</strong> :</p>
+                    </div>
+                    <div class="description">
+                        <p>{{ stage.description }}</p>
+                    </div>
+                </div>
+                <div class="entreprise">
+                    <h2 style="display: inline">L'Entreprise : </h2>
+                    <h3
+                            style="display: inline">{{ stage.entreprise.nom }}</h3>
+                    <hr>
+
+                    {% if stage.entreprise.logo %}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="image-logo" src="/images/photo-entreprise/{{ stage.entreprise.logo }}"
+                                 alt="Logo Thales"
+                                 width="100%">
+                        </div>
+                        <div class="col-md-8">
+                            <p><strong>Adresse</strong> : {{ stage.entreprise.adresse }}</p>
+                            <p><strong>Contact</strong> : <a href="{{ stage.entreprise.mail }}"
+                                                             title="Adresse mail Entreprise (messagerie)">{{ stage.entreprise.mail }}</a>
+                            </p>
+                            <p><strong>Description</strong> : {{ stage.entreprise.description }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="ressenti">
+                            <p><strong>Ressenti</strong> : {{ stage.ressentientreprise }}</p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div>
+                        <p><strong>Adresse</strong> : {{ stage.entreprise.adresse }}</p>
+                        <p><strong>Contact</strong> : <a href="{{ stage.entreprise.mail }}"
+                                                         title="Adresse mail Entreprise (messagerie)">{{ stage.entreprise.mail }}</a>
+                        </p>
+                        <p><strong>Description</strong> : {{ stage.entreprise.description }}</p>
+                        <div class="ressenti">
+                            <p><strong>Ressenti</strong> : {{ stage.ressentientreprise }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                    <div class="logement-stage">
+                        <h2>Le Logement</h2>
+                        <hr>
+                        {% if stage.logement %}
+                            <div class="contenu">
+                                <p><strong>Adresse</strong> : {{ stage.logement.adresse }}</p>
+                                <p><strong>Description</strong> : {{ stage.logement.description }}</p>
+                                <p><strong>Budget mensuel</strong> : {{ stage.logement.budget }}</p>
+                                <p><strong>Contact</strong> : {{ stage.logement.contact }}</p>
+                            </div>
+                            <div class="ressenti">
+                                <p><strong>Ressenti</strong> : {{ stage.logement.ressenti }}</p>
+                            </div>
+                        {% else %}
+                            <h4 class="text-center"> L'auteur n'a pas renseigné de logement pour son semestre </h4>
+                        {% endif %}
+                    </div>
+                    <div class="ressenti-stage">
+                        <h2>Le ressenti global sur l'expérience </h2>
+                        <hr>
+                        <p>{{ stage.ressentistage }}</p>
+                    </div>
+                    <div class="commentaire-stage">
+                        <h2>Commentaires </h2>
+                        <hr>
+                        {% for comment in comments %}
+                            <div class="contenu">
+                                <div class="row">
+                                    <div class=" col-xs-3 col-sm-3" id="comment-left">
+                                        <div class="row" id="image_profil"><img class="image"
+                                                                                src="/images/photo-profil/{{ comment.auteur.photo }}"
+                                                                                alt="Avatar"></div>
+                                        <div class="row"><h4>
+                                                <strong>{{ comment.auteur.prenom }} {{ comment.auteur.nom }}</strong>
+                                            </h4></div>
+                                    </div>
+                                    <div class="col-xs-8 col-sm-8" id="comment-right">
+                                        <div class="row"><span class="time"> le {{ comment.date|date("d/m/Y") }}
+                                                à {{ comment.date|date("H:i") }} </span></div>
+                                        <div class="row"><p>{{ comment.content }}</p></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% else %}
+                            <p>Il n'y a pas encore de commentaires.</p>
+                        {% endfor %}
+                    </div>
+                    <div class="ajout-commentaire-stage">
+                        <h3>Ajouter un commentaire </h3>
+                        <hr>
+                        {% for flashMessage in app.session.flashbag.get('success') %}
+                            <div class="alert alert-success">
+                                {{ flashMessage }}
+                            </div>
+                        {% endfor %}
+                        {% if commentForm %}
+                            {{ form_start(commentForm) }}
+                            <div class="form-group">
+                                {{ form_errors(commentForm.content) }}
+                                {{ form_widget(commentForm.content, { 'attr':  {
+                                    'rows': '4',
+                                    'class': 'form-control',
+                                    'placeholder': 'Entrez votre commentaire'
+                                }}) }}
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Publier"/>
+                            </div>
+                            {{ form_end(commentForm) }}
+
+                        {% else %}
+                            <p><a href="{{ path('login') }} ">Connectez-vous </a> pour pouvoir ajouter un commentaire.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            <div class="col-md-4">
+                <div class="section-personne">
+                    <h3>{{ stage.auteur.prenom }} {{ stage.auteur.nom }}</h3>
+                    <hr>
+                    <h4>Promo {{ stage.auteur.promo }}</h4>
+                    <h4><a href="mailto:{{ stage.auteur.email }}"
+                           title="Adresse mail (messagerie)">{{ stage.auteur.email }}</a></h4>
+                    <p> " {{ stage.auteur.description }}"</p>
+                </div>
+                <div class="section-carte">
+                    <div id="map"></div>
+                    <input id="ville" type="text" value="{{ stage.entreprise.ville }}"/>
+                    <input id="entreprise" type="text" value="{{ stage.entreprise.adresse }}"/>
+                    <input id="nom_entreprise" type="text" value="{{ stage.entreprise.nom }}"/>
+                    <input id="logement" type="text" value="{{ stage.logement.adresse }}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdZKJPUQeDqRN4v5kgO0t8unvVjhzdvfE&libraries=places"></script>
+    <script type="text/javascript" src="{{ asset('/lib/js/map_stage.js') }}"></script>
+{% endblock %}

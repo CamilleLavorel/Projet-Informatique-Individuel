@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ asset('/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/microcms.css') }}" rel="stylesheet">
+
+    <!-- jQuery -->
+    <link href="{{ asset('/lib/jquery/jquery-ui.css') }}" rel="stylesheet">
+    <script src="{{ asset('/lib/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('/lib/jquery/jquery-ui.min.js') }}"></script>
+
+    <title>Stage-Semestre-Etranger-ENSC - {% block title %}{% endblock %}</title>
+</head>
+<body>
+
+<div class="topnav navbar-fixed-top">
+    <div class="box-left col-md-3 navbar-left">
+        <a class="menu">
+            <span style="font-size:20px;cursor:pointer" onclick="openNav()">&#9776; Menu </span>
+        </a>
+    </div>
+    <div class="box-middle col-md-4"></div>
+    <div class="box-right col-md-5 navbar-right">
+        {% if app.user and is_granted('ROLE_ADMIN') %}
+            <div class="{% if adminMenu is defined %}active{% endif %}"style="float: left"><a href="{{ path('admin') }}"><span class="glyphicon glyphicon-cog"></span> Administration</a></div>
+        {% endif %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <div class="dropdown" style="float: left">
+                <a class="dropbtn" onclick="myFunction()">Bienvenue
+                    <b class="caret"></b>
+                </a>
+                <div class="dropdown-content" id="myDropdown">
+                    <a href="{{ path('mesexperiences')}}">Mes expériences</a>
+                    <a href="{{ path('mescommentaires')}}">Mes commentaires</a>
+                    <a href="{{ path('profil') }}">Mon profil</a>
+                    <a href="{{ path('logout') }}">Se déconnecter</a>
+                </div>
+            </div>
+        {% else %}
+            <div class="box-right col-md-8 navbar-right">
+            <a href="{{ path('inscription') }}">Inscription</a>
+            <a href="{{ path('login') }}">Connexion</a>
+            </div>
+
+        {% endif %}
+    </div>
+
+
+</div>
+
+<div id="mySidenav" class="sidenav">
+    <div class="top-sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    </div>
+    <div class="main-sidenav">
+        <a href="{{ path('home') }}">Accueil</a>
+        <a href="{{ path('recherche-stage') }}">Stages </a>
+        <a href="{{ path('recherche-semestre') }}">Semestres d'études</a>
+        <a href="{{ path('informations-pratiques') }}">Informations pratiques</a>
+        <a href="{{ path('partenariat') }}">Partenariats</a>
+    </div>
+</div>
+
+
+<div id="content">{% block content %}{% endblock %}</div>
+
+<footer class="footer">
+    <p> Site réalisé avec &hearts; par Camille Lavorel (Etudiante de l'ENSC) dans le cadre du Projet informatique
+        individuel </p>
+</footer>
+
+
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.9)";
+
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+        document.body.style.backgroundColor = "white";
+    }
+
+    /* When the user clicks on the button,
+     toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (e) {
+        if (!e.target.matches('.dropbtn')) {
+            var myDropdown = document.getElementById("myDropdown");
+            if (myDropdown.classList.contains('show')) {
+                myDropdown.classList.remove('show');
+            }
+        }
+    }
+</script>
+<!-- JavaScript Boostrap plugin -->
+<script src="{{ asset('/lib/bootstrap/js/bootstrap.min.js') }}"></script>
+</body>
+</html>
+

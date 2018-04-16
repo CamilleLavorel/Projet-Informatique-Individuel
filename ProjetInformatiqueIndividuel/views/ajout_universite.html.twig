@@ -1,0 +1,168 @@
+{% extends "layout.html.twig" %}
+
+{% block title %} Ajout Université{% endblock %}
+
+{% block content %}
+
+
+<h2 class="text-center">Ajout d'une université </h2>
+    <div class="container" id="contenu-ajout-universite">
+
+        {{ form_start(universiteForm, { 'attr': {'class': 'form-horizontal'} }) }}
+        <div class="well">
+            <fieldset>
+                <legend> Informations générales sur l'université </legend>
+                <h5 class="pull-right">* champs obligatoires</h5>
+                <div style="display: none;">
+                    <div class="form-group">
+                        {{ form_label(universiteForm.id, null, { 'label_attr':  {
+                            'class': 'col-sm-5 control-label'
+                        }}) }}
+                        <div class="col-sm-4">
+                            {{ form_errors(universiteForm.id) }}
+                            {{ form_widget(universiteForm.id, { 'attr':  {
+                                'rows': '1',
+                                'class': 'form-control'
+                            }}) }}
+                        </div>
+                    </div>
+                </div>
+            <div class="form-group">
+                {{ form_label(universiteForm.nom, null, { 'label_attr':  {
+                    'class': 'col-sm-5 control-label'
+                }}) }}
+                <div class="col-sm-4">
+                    {{ form_errors(universiteForm.nom) }}
+                    {{ form_widget(universiteForm.nom, { 'attr':  {
+                        'rows': '1',
+                        'class': 'form-control'
+                    }}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(universiteForm.adresse, null, { 'label_attr':  {
+                    'class': 'col-sm-5 control-label'
+                }}) }}
+                <div class="col-sm-4">
+                    {{ form_errors(universiteForm.adresse) }}
+                    {{ form_widget(universiteForm.adresse, { 'attr':  {
+                        'rows': '1',
+                        'class': 'form-control'
+                    }}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(universiteForm.ville, null, { 'label_attr':  {
+                    'class': 'col-sm-5 control-label'
+                }}) }}
+                <div class="col-sm-4">
+                    {{ form_errors(universiteForm.ville) }}
+                    {{ form_widget(universiteForm.ville, { 'attr':  {
+                        'rows': '1',
+                        'class': 'form-control'
+                    }}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(universiteForm.pays, null, { 'label_attr':  {
+                    'class': 'col-sm-5 control-label'
+                }}) }}
+                <div class="col-sm-4">
+                    {{ form_errors(universiteForm.pays) }}
+                    {{ form_widget(universiteForm.pays, { 'attr':  {
+                        'rows': '1',
+                        'class': 'form-control'
+                    }}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(universiteForm.mail, null, { 'label_attr':  {
+                    'class': 'col-sm-5 control-label'
+                }}) }}
+                <div class="col-sm-4">
+                    {{ form_errors(universiteForm.mail) }}
+                    {{ form_widget(universiteForm.mail, { 'attr':  {
+                        'rows': '1',
+                        'class': 'form-control'
+                    }}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(universiteForm.description, null, { 'label_attr':  {
+                    'class': 'col-sm-5 control-label'
+                }}) }}
+                <div class="col-sm-4">
+                    {{ form_errors(universiteForm.description) }}
+                    {{ form_widget(universiteForm.description, { 'attr':  {
+                        'rows': '3',
+                        'class': 'form-control'
+                    }}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(universiteForm.partenariat, null, { 'label_attr':  {
+                    'class': 'col-sm-5 control-label'
+                }}) }}
+                <div class="col-sm-4">
+                    {{ form_errors(universiteForm.partenariat) }}
+                    {{ form_widget(universiteForm.partenariat, { 'attr':  {
+                        'rows': '1',
+                        'class': 'form-control'
+                    }}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(universiteForm.logo, null, { 'label_attr':  {
+                    'class': 'col-sm-5 control-label'
+                }}) }}
+                <div class="col-sm-4">
+                    {{ form_errors(universiteForm.logo) }}
+                    {{ form_widget(universiteForm.logo, { 'attr':  {
+                        'rows': '1'
+                    }}) }}
+                </div>
+            </div>
+            </fieldset>
+        </div>
+        <div class="form-group">
+            <div class="boutons-universite">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    <button type="submit" class="bouton-enregistrer btn btn-default btn-primary center-block left"><span
+                                class="glyphicon glyphicon-log-in"></span> Enregistrer
+                    </button>
+                    <button class="bouton-annuler btn btn-default btn-primary center-block left" title="Supprimer"
+                            data-toggle="modal" data-target="#myModal">Annuler
+                    </button>
+
+
+                    <!-- Fenetre modale : confirmation pour quitter la page -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Confirmation demandée </h4>
+                                </div>
+                                <div class="modal-body">
+                                    Êtes-vous sûr(e) de vouloir quitter la page ? Les informations ne seront pas
+                                    sauvegardées.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                    <a href="javascript:history.go(-1)" class="btn btn-danger">Confirmer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ form_end(universiteForm) }}
+    </div>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdZKJPUQeDqRN4v5kgO0t8unvVjhzdvfE&libraries=places"></script>
+    <script type="text/javascript" src="{{ asset('/lib/js/autocomplete_universite.js') }}"></script>
+
+{% endblock %}

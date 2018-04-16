@@ -1,0 +1,519 @@
+{% extends "layout.html.twig" %}
+
+{% block title %} Modification Semestre{% endblock %}
+
+{% block content %}
+
+
+    <h2 class="text-center">Modification d'un semestre</h2>
+
+    <div class="container" id="contenu-modif-semestre">
+
+        {{ form_start(semestreForm, { 'attr': {'class': 'form-horizontal'} }) }}
+        <div class="well">
+            <fieldset>
+                <legend> Informations générales sur le semestre</legend>
+                <h5 class="pull-right">* champs obligatoires</h5>
+
+                <div class="form-group">
+                    {{ form_label(semestreForm.titre, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.titre) }}
+                        {{ form_widget(semestreForm.titre, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.annee, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.annee) }}
+                        {{ form_widget(semestreForm.annee, { 'attr':  {
+                            'class': 'motif',
+                            'rows': '1'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.duree, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.duree) }}
+                        {{ form_widget(semestreForm.duree, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.datedebut, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.datedebut) }}
+                        {{ form_widget(semestreForm.datedebut, { 'attr':  {
+                            'rows': '1'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.datefin, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.datefin) }}
+                        {{ form_widget(semestreForm.datefin, { 'attr':  {
+                            'rows': '1'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.description, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.description) }}
+                        {{ form_widget(semestreForm.description, { 'attr':  {
+                            'rows': '3',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.ressentisemestre, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.ressentisemestre) }}
+                        {{ form_widget(semestreForm.ressentisemestre, { 'attr':  {
+                            'rows': '3',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.photo, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.photo) }}
+                        {{ form_widget(semestreForm.photo, { 'attr':  {
+                            'rows': '1'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-5 control-label">Photo actuelle associée au semestre :</label>
+                    {% if photo_semestre %}
+                        <div class="col-sm-4">
+                            <img src="/images/photo-semestre/{{ photo_semestre }}">
+                        </div>
+                    {% else %}
+                        <div class="col-sm-4">
+                            <h5>Vous n'avez pas encore renseigné de photo </h5>
+                        </div>
+                    {% endif %}
+                </div>
+            </fieldset>
+        </div>
+        <div class="well">
+            <fieldset>
+                <legend> Informations sur l'université</legend>
+                <h5 class="pull-right">* champs obligatoires</h5>
+                <div style="display:none;">
+                <div class="form-group">
+                    {{ form_label(semestreForm.universite.id, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.universite.id) }}
+                        {{ form_widget(semestreForm.universite.id, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.universite.nom, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.universite.nom) }}
+                        {{ form_widget(semestreForm.universite.nom, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.universite.adresse, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.universite.adresse) }}
+                        {{ form_widget(semestreForm.universite.adresse, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.universite.ville, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.universite.ville) }}
+                        {{ form_widget(semestreForm.universite.ville, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.universite.pays, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.universite.pays) }}
+                        {{ form_widget(semestreForm.universite.pays, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.universite.mail, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.universite.mail) }}
+                        {{ form_widget(semestreForm.universite.mail, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.universite.description, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.universite.description) }}
+                        {{ form_widget(semestreForm.universite.description, { 'attr':  {
+                            'rows': '3',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.universite.partenariat, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.universite.partenariat) }}
+                        {{ form_widget(semestreForm.universite.partenariat, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.ressentiuniversite, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.ressentiuniversite) }}
+                        {{ form_widget(semestreForm.ressentiuniversite, { 'attr':  {
+                            'rows': '3',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.universite.logo, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.universite.logo) }}
+                        {{ form_widget(semestreForm.universite.logo, { 'attr':  {
+                            'rows': '1'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-5 control-label">Logo actuel de l'université :</label>
+                    {% if photo_universite %}
+                    <div class="col-sm-4">
+                        <img src="/images/photo-universite/{{ photo_universite }}">
+                    </div>
+                    {% else %}
+                        <div class="col-sm-4">
+                            <h5>Le logo de l'université n'a pas encore été renseigné </h5>
+                        </div>
+                    {% endif %}
+                </div>
+            </fieldset>
+        </div>
+        <div class="well">
+            <fieldset>
+                <legend> Les cours suivis à l'université</legend>
+                <h5 class="pull-right">* champs obligatoires</h5>
+
+                {% macro information_prototype(coursField) %}
+                    <hr>
+                    <div class="cours-form">
+                    <div class="form-group">
+                        {{ form_label(coursField.titre) }}
+                        <div class="col-sm-4">
+                            {{ form_errors(coursField.titre) }}
+                            {{ form_widget(coursField.titre) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(coursField.description) }}
+                        <div class="col-sm-4">
+                            {{ form_errors(coursField.description) }}
+                            {{ form_widget(coursField.description) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(coursField.ressenti) }}
+                        <div class="col-sm-4">
+                            {{ form_errors(coursField.ressenti) }}
+                            {{ form_widget(coursField.ressenti) }}
+                        </div>
+                    </div>
+                    </div>
+
+                {% endmacro %}
+
+                <div class="cours" data-prototype="{{ _self.information_prototype(semestreForm.cours.vars.prototype)|e }}">
+                    {% for coursField in semestreForm.cours %}
+                        {{ _self.information_prototype(coursField) }}
+                    {% endfor %}
+                </div>
+                <div class="text-center">
+                <a href="#" id="add_cours" style="color: darkslategray">Ajouter un cours</a>
+                </div>
+
+            </fieldset>
+
+        </div>
+
+        <div class="well">
+            <fieldset>
+                <legend> Informations générales sur le logement</legend>
+                <h5 class="pull-right">* champs obligatoires</h5>
+
+                <div class="form-group">
+                    {{ form_label(semestreForm.logement.adresse, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.logement.adresse) }}
+                        {{ form_widget(semestreForm.logement.adresse, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.logement.ville, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.logement.ville) }}
+                        {{ form_widget(semestreForm.logement.ville, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.logement.pays, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.logement.pays) }}
+                        {{ form_widget(semestreForm.logement.pays, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.logement.description, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.logement.description) }}
+                        {{ form_widget(semestreForm.logement.description, { 'attr':  {
+                            'rows': '3',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.logement.contact, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.logement.contact) }}
+                        {{ form_widget(semestreForm.logement.contact, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.logement.ressenti, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.logement.ressenti) }}
+                        {{ form_widget(semestreForm.logement.ressenti, { 'attr':  {
+                            'rows': '3',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(semestreForm.logement.budget, null, { 'label_attr':  {
+                        'class': 'col-sm-5 control-label'
+                    }}) }}
+                    <div class="col-sm-4">
+                        {{ form_errors(semestreForm.logement.budget) }}
+                        {{ form_widget(semestreForm.logement.budget, { 'attr':  {
+                            'rows': '1',
+                            'class': 'form-control'
+                        }}) }}
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+
+
+        <div class="form-group">
+            <div class="boutons-ajout-semestre">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    <button type="submit" class="bouton-enregistrer btn btn-default btn-primary center-block left"><span
+                                class="glyphicon glyphicon-log-in"></span> Enregistrer
+                    </button>
+                    <button class="bouton-annuler btn btn-default btn-primary center-block left" title="Supprimer"
+                            data-toggle="modal" data-target="#myModal">Annuler
+                    </button>
+                </div>
+
+
+                    <!-- Fenetre modale : confirmation pour quitter la page -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Confirmation demandée </h4>
+                                </div>
+                                <div class="modal-body">
+                                    Êtes-vous sûr(e) de vouloir quitter la page ? Les informations ne seront pas
+                                    sauvegardées.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                    <a href="javascript:history.go(-1)" class="btn btn-danger">Confirmer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+
+        {{ form_end(semestreForm) }}
+    </div>
+
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdZKJPUQeDqRN4v5kgO0t8unvVjhzdvfE&libraries=places"></script>
+    <script type="text/javascript" src="{{ asset('/lib/js/autocomplete_semestre_universite.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/lib/js/autocomplete_logement_semestre.js') }}"></script>
+
+    <script>
+
+        $(document).ready(function() {
+            // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+            var $container = $('div.cours');
+
+            // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+            var index = $container.find(':input').length;
+
+            // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+            $('#add_cours').click(function (e) {
+                addCours($container);
+
+                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                return false;
+            });
+
+
+            // S'il existe déjà des cours, on ajoute un lien de suppression pour chacune d'entre elles
+            $container.children('div').each(function () {
+                addDeleteLink($(this));
+            });
+
+
+            // La fonction qui ajoute un formulaire CategoryType
+            function addCours($container) {
+                // Dans le contenu de l'attribut « data-prototype », on remplace :
+                // - le texte "__name__label__" qu'il contient par le label du champ
+                // - le texte "__name__" qu'il contient par le numéro du champ
+                var template = $container.attr('data-prototype')
+                        .replace(/__name__label__/g, 'Cours n°' + (index + 1))
+                        .replace(/__name__/g, index)
+                    ;
+
+                // On crée un objet jquery qui contient ce template
+                var $prototype = $(template);
+                console.log($prototype);
+
+                // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+                addDeleteLink($prototype);
+
+                // On ajoute le prototype modifié à la fin de la balise <div>
+                $container.append($prototype);
+
+                // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+                index++;
+            }
+
+            // La fonction qui ajoute un lien de suppression d'une catégorie
+            function addDeleteLink($prototype) {
+                // Création du lien
+                var $deleteLink = $('<a href="#">Supprimer ce cours</a>');
+
+                // Ajout du lien
+                $prototype.append($deleteLink);
+
+                // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
+                $deleteLink.click(function (e) {
+                    $prototype.remove();
+
+                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                    return false;
+                });
+            }
+        });
+
+    </script>
+
+
+
+{% endblock %}
